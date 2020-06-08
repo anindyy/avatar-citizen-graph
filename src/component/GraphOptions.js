@@ -2,12 +2,20 @@ var options = {
     height: '100%',
     width: '100%',
     edges: {
-        color: '#000000',
+        color: '#3b3b3b',
         arrows: {
             to: {
                 enabled: false
             }
         }
+    },
+    nodes: {
+        borderWidth: 0,
+        font: {
+            size: 10
+        },
+        shape: 'dot',
+        size: 7
     },
     interaction: { hoverEdges: true }
 };

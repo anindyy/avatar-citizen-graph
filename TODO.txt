@@ -1,0 +1,7 @@
+- kalo ID-nya 3, item already exist
+- terus item already exist ini sering kena gitu knp y
+  i think it got to do with the graph
+  it cant rewrite itself
+- gedein canvas graphnya, please.
+  add some aesthetics to the result too
+- tambahin action kalo klik graph

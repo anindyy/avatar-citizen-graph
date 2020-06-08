@@ -5,13 +5,32 @@ import { options, events } from './GraphOptions';
 class Result extends React.Component {
     constructor(props) {
         super(props);
+        this.mapNode = this.mapNode.bind(this);
         this.mapEdge = this.mapEdge.bind(this);
     }
 
     mapNode(person) {
+        let color = '';
+        switch (person.element) {
+            case 'fire':
+                color = '#ff6512';
+                break;
+            case 'water':
+                color = '#41a5f2';
+                break;
+            case 'air':
+                color = '#b4cecf';
+                break;
+            case 'earth':
+                color = '#29c434';
+                break;
+        }
+        
         return ({
+            color: color,
             id: person.id,
-            label: person.name
+            label: person.name,
+            title: `ID: ${person.id}, elmt: ${person.element}`
         })
     }
 
@@ -41,18 +60,12 @@ class Result extends React.Component {
             var friends = this.props.data.friends;
             var nodes = friends.map(this.mapNode);
             var edges = friends.map(this.mapEdge);
-            nodes.push({
-                id: this.props.data.id,
-                label: this.props.data.name
-            })
+            nodes.push(this.mapNode(this.props.data));
 
             var graph = {
                 nodes: nodes,
                 edges: edges
             };
-
-            console.log(nodes);
-            console.log(edges);
 
             return (
                 <div>
