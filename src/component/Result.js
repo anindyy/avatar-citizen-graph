@@ -1,5 +1,5 @@
 import React from 'react';
-import Graph from 'vis-react';
+import Graph from 'react-graph-vis';
 import { options, events } from './GraphOptions';
 
 class Result extends React.Component {
@@ -23,6 +23,9 @@ class Result extends React.Component {
                 break;
             case 'earth':
                 color = '#29c434';
+                break;
+            default:
+                color = '#3b3b3b'
                 break;
         }
         
@@ -57,10 +60,9 @@ class Result extends React.Component {
             );
         }
         else {
-            var friends = this.props.data.friends;
+            var friends = this.props.data.friends.filter((v, i, a) => a.indexOf(v) === i);
             var nodes = friends.map(this.mapNode);
             var edges = friends.map(this.mapEdge);
-            nodes.push(this.mapNode(this.props.data));
 
             var graph = {
                 nodes: nodes,
@@ -79,9 +81,7 @@ class Result extends React.Component {
                         graph={graph}
                         options={options}
                         events={events}
-                        getNetwork={this.getNetwork}
-                        getEdges={this.getEdges}
-                        getNodes={this.getNodes}
+                        style = {{ height: '650px' }}
                         vis={vis => (this.vis = vis)}
                     />
                 </div>

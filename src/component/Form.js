@@ -1,7 +1,6 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Result from './Result';
 
 class Form extends React.Component {
     constructor(props) {
@@ -21,6 +20,7 @@ class Form extends React.Component {
                 payload: data
             });
         }
+        this.props.onPayloadChange(data);
     }
 
     handleChange(e) {
@@ -61,7 +61,6 @@ class Form extends React.Component {
                     onClick = {this.handleClick}>
                         Search
                 </Button>
-                <Result data = {this.state.payload} />
             </div>
         )
     }

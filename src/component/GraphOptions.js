@@ -1,4 +1,5 @@
 var options = {
+    autoResize: true,
     height: '100%',
     width: '100%',
     edges: {
