@@ -1,6 +1,6 @@
 import React from 'react';
 import Graph from 'react-graph-vis';
-import { options, events } from './GraphOptions';
+import { options } from './GraphOptions';
 import { clean } from './DataCleaner';
 
 class Result extends React.Component {
@@ -23,7 +23,6 @@ class Result extends React.Component {
             props.data !== 'error'
         ) {
             var { nodes, edges } = clean(props.data);
-
             return {
                 id: props.data.id,
                 nodes: nodes,
@@ -33,8 +32,29 @@ class Result extends React.Component {
         return null;
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return (nextProps.data.id !== this.state.id);
+    handleNodeClick(event) {
+        var node = event.nodes[0];
+        if (node) {
+            var nodes, edges;
+            console.log(node);
+
+            const axios = require('axios').default;
+            let url = 'http://avatar.labpro.dev/friends/';
+            axios.get(`${url}${node}`)
+                .then(response => {
+                    // TODO: make an additional function here
+                    // bedain sama clean initial
+                    // ini clean added data gitu
+                    // jadi dia bakal consider si initial
+                    console.log(response);
+                    var cleaned = clean(response.data.payload);
+                    nodes = cleaned.nodes;
+                    edges = cleaned.edges;
+
+                    console.log(nodes);
+                    console.log(edges);
+                });
+        }     
     }
 
     render() {
@@ -58,6 +78,10 @@ class Result extends React.Component {
                 edges: this.state.edges
             };
 
+            var events = { 
+                click: this.handleNodeClick
+            };
+
             return (
                 <div>
                     <p>
@@ -71,7 +95,7 @@ class Result extends React.Component {
                         options = { options }
                         events = { events }
                         style = {{ height: '650px' }}
-                        vis={vis => (this.vis = vis)}
+                        vis = {vis => (this.vis = vis)}
                     />
                 </div>
             );
