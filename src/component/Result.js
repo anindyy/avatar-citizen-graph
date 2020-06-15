@@ -1,47 +1,40 @@
 import React from 'react';
 import Graph from 'react-graph-vis';
 import { options, events } from './GraphOptions';
+import { clean } from './DataCleaner';
 
 class Result extends React.Component {
     constructor(props) {
         super(props);
-        this.mapNode = this.mapNode.bind(this);
-        this.mapEdge = this.mapEdge.bind(this);
-    }
 
-    mapNode(person) {
-        let color = '';
-        switch (person.element) {
-            case 'fire':
-                color = '#ff6512';
-                break;
-            case 'water':
-                color = '#41a5f2';
-                break;
-            case 'air':
-                color = '#b4cecf';
-                break;
-            case 'earth':
-                color = '#29c434';
-                break;
-            default:
-                color = '#3b3b3b'
-                break;
+        this.state = {
+            id: 0,
+            nodes: [],
+            edges: []
         }
-        
-        return ({
-            color: color,
-            id: person.id,
-            label: person.name,
-            title: `ID: ${person.id}, elmt: ${person.element}`
-        })
     }
 
-    mapEdge(person) {
-        return ({
-            from: this.props.data.id,
-            to: person.id
-        })
+    static getDerivedStateFromProps(props, state) {
+        // I'm not sure if this is an anti-pattern or not
+        // but I can't think of any other ways
+        if (
+            props.data &&
+            props.data.id !== state.id && 
+            props.data !== 'error'
+        ) {
+            var { nodes, edges } = clean(props.data);
+
+            return {
+                id: props.data.id,
+                nodes: nodes,
+                edges: edges
+            };
+        }
+        return null;
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return (nextProps.data.id !== this.state.id);
     }
 
     render() {
@@ -60,13 +53,9 @@ class Result extends React.Component {
             );
         }
         else {
-            var friends = this.props.data.friends.filter((v, i, a) => a.indexOf(v) === i);
-            var nodes = friends.map(this.mapNode);
-            var edges = friends.map(this.mapEdge);
-
             var graph = {
-                nodes: nodes,
-                edges: edges
+                nodes: this.state.nodes,
+                edges: this.state.edges
             };
 
             return (
@@ -78,9 +67,9 @@ class Result extends React.Component {
                     </p>
 
                     <Graph
-                        graph={graph}
-                        options={options}
-                        events={events}
+                        graph = { graph }
+                        options = { options }
+                        events = { events }
                         style = {{ height: '650px' }}
                         vis={vis => (this.vis = vis)}
                     />

@@ -17,13 +17,22 @@ var options = {
         },
         shape: 'dot',
         size: 7
-    },
-    interaction: { hoverEdges: true }
+    }
 };
  
 var events = {
-    select: function(event) {
-        var { nodes, edges } = event;
+    click: function(event) {
+        var node = event.nodes[0];
+        var resp;
+        console.log(node);
+
+        const axios = require('axios').default;
+        let url = 'http://avatar.labpro.dev/friends/';
+        axios.get(`${url}${node}`)
+            .then(response => {
+                console.log(response);
+                resp = response;
+            });
     }
 };
 
