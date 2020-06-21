@@ -1,20 +1,26 @@
-- kalo ID-nya 3, item already exist
-  ID 3 already exist karena keulang di friends
 - terus item already exist ini sering kena gitu knp y
   i think it got to do with the graph
   it cant rewrite itself
-- tambahin action kalo klik graph
 - gedein canvasnya masih maksa (belum resizable)
+- tambahin arrow di edgesnya
+  cek repeating nodes aja? repeating edges gaakan kejadian
+  kalo edgesnya dipanahin
+
 
 [ API ]
 - There are friend duplicates, you have to clean them
   before displaying it
 - The data isn't consistent. Some included the person
-  themselves in the friends list, some doesn't
-- 
+  themselves in the friends list, some doesn't.
+- Temen-temennya ga konsisten. Misal di datanya A, dia
+  temenan sama B, tapi di data B dia ga temenan sama A.
+  One sided friend dong :)
 
 [ SOLVED ]
 This serves as a reminder that you can do things right.
 You've solved these, and you'll solve those.
 - gedein canvas graphnya, please.
   i guess it has some resizing problems too
+- tambahin action kalo klik graph
+- kalo ID-nya 3, item already exist
+  ID 3 already exist karena keulang di friends

@@ -1,7 +1,7 @@
 import React from 'react';
 import Graph from 'react-graph-vis';
 import { options } from './GraphOptions';
-import { clean } from './DataCleaner';
+import { cleanInitial, cleanAdditional } from './DataCleaner';
 
 class Result extends React.Component {
     constructor(props) {
@@ -9,9 +9,10 @@ class Result extends React.Component {
 
         this.state = {
             id: 0,
-            nodes: [],
-            edges: []
+            graph: {}
         }
+
+        this.handleNodeClick = this.handleNodeClick.bind(this);
     }
 
     static getDerivedStateFromProps(props, state) {
@@ -22,20 +23,25 @@ class Result extends React.Component {
             props.data.id !== state.id && 
             props.data !== 'error'
         ) {
-            var { nodes, edges } = clean(props.data);
+            var { nodes, edges } = cleanInitial(props.data);
             return {
                 id: props.data.id,
-                nodes: nodes,
-                edges: edges
+                graph: {
+                    nodes: nodes,
+                    edges: edges
+                }
             };
         }
-        return null;
+        return {
+            id: 0,
+            graph: {}
+        };
     }
 
     handleNodeClick(event) {
         var node = event.nodes[0];
         if (node) {
-            var nodes, edges;
+            var newNodes, newEdges;
             console.log(node);
 
             const axios = require('axios').default;
@@ -43,16 +49,28 @@ class Result extends React.Component {
             axios.get(`${url}${node}`)
                 .then(response => {
                     // TODO: make an additional function here
-                    // bedain sama clean initial
+                    // bedain sama clean initial data
                     // ini clean added data gitu
-                    // jadi dia bakal consider si initial
+                    // jadi dia bakal consider si initial datanya
+                    // abis itu dia return set baru nodes sama edges
+                    // bistu setState({ graph: newGraph })
+                    // BIS TU JALAN DONG PLIS
                     console.log(response);
-                    var cleaned = clean(response.data.payload);
-                    nodes = cleaned.nodes;
-                    edges = cleaned.edges;
+                    console.log(this.state.graph);
+                    var cleaned = cleanAdditional(response.data.payload, this.state.graph);
+                    newNodes = cleaned.nodes;
+                    newEdges = cleaned.edges;
+                    console.log(newNodes);
+                    console.log(newEdges);
+                    var newGraph = {
+                        nodes: newNodes,
+                        edges: newEdges
+                    };
+                    console.log(newGraph);
 
-                    console.log(nodes);
-                    console.log(edges);
+                    this.setState({
+                        graph: newGraph
+                    });
                 });
         }     
     }
@@ -73,16 +91,7 @@ class Result extends React.Component {
             );
         }
         else {
-            var graph = {
-                nodes: this.state.nodes,
-                edges: this.state.edges
-            };
-
-            var events = { 
-                click: this.handleNodeClick
-            };
-
-            return (
+           return (
                 <div>
                     <p>
                         <strong>ID: </strong>{this.props.data.id}{"\n"}
@@ -91,9 +100,9 @@ class Result extends React.Component {
                     </p>
 
                     <Graph
-                        graph = { graph }
+                        graph = { this.state.graph }
                         options = { options }
-                        events = { events }
+                        events = {{ click: this.handleNodeClick }}
                         style = {{ height: '650px' }}
                         vis = {vis => (this.vis = vis)}
                     />

@@ -6,7 +6,7 @@ var options = {
         color: '#3b3b3b',
         arrows: {
             to: {
-                enabled: false
+                enabled: true
             }
         }
     },
