@@ -1,23 +1,10 @@
-var options = {
-    autoResize: true,
-    height: '100%',
-    width: '100%',
-    edges: {
-        color: '#3b3b3b',
-        arrows: {
-            to: {
-                enabled: true
-            }
-        }
-    },
-    nodes: {
-        borderWidth: 0,
-        font: {
-            size: 10
-        },
-        shape: 'dot',
-        size: 7
+var config = {
+    directed: true,
+    height: 400,
+    width: 800,
+    node: {
+        labelProperty: 'name'
     }
 };
 
-export { options }
+export { config }
