@@ -2,6 +2,8 @@ import React from 'react';
 import Graph from 'react-graph-vis';
 import { options } from './GraphOptions';
 import { cleanInitial, cleanAdditional } from './DataCleaner';
+import { v4 as uuidv4 } from "uuid";
+import cloneDeep from "lodash/cloneDeep";
 
 class Result extends React.Component {
     constructor(props) {
@@ -33,8 +35,8 @@ class Result extends React.Component {
             };
         }
         return {
-            id: 0,
-            graph: {}
+            id: state.id,
+            graph: state.graph
         };
     }
 
@@ -58,14 +60,15 @@ class Result extends React.Component {
                     console.log(response);
                     console.log(this.state.graph);
                     var cleaned = cleanAdditional(response.data.payload, this.state.graph);
-                    newNodes = cleaned.nodes;
-                    newEdges = cleaned.edges;
+                    newNodes = cleaned.newNodes;
+                    newEdges = cleaned.newEdges;
+                    console.log("New nodes/edges");
                     console.log(newNodes);
                     console.log(newEdges);
-                    var newGraph = {
-                        nodes: newNodes,
-                        edges: newEdges
-                    };
+                    var newGraph = cloneDeep(this.state.graph);
+                    newGraph.nodes.concat(newNodes);
+                    newGraph.edges.concat(newEdges);
+                    console.log("New graph");
                     console.log(newGraph);
 
                     this.setState({
@@ -76,6 +79,7 @@ class Result extends React.Component {
     }
 
     render() {
+        console.log("Graph renders!");
         if (!this.props.data) {
             return (
                 <div>
@@ -90,7 +94,9 @@ class Result extends React.Component {
                 </div>
             );
         }
-        else {
+        else { 
+            console.log("Graph state:");
+            console.log(this.state.graph);
            return (
                 <div>
                     <p>
@@ -100,11 +106,11 @@ class Result extends React.Component {
                     </p>
 
                     <Graph
+                        key = { uuidv4 }
                         graph = { this.state.graph }
                         options = { options }
                         events = {{ click: this.handleNodeClick }}
                         style = {{ height: '650px' }}
-                        vis = {vis => (this.vis = vis)}
                     />
                 </div>
             );

@@ -2,10 +2,8 @@
   i think it got to do with the graph
   it cant rewrite itself
 - gedein canvasnya masih maksa (belum resizable)
-- tambahin arrow di edgesnya
-  cek repeating nodes aja? repeating edges gaakan kejadian
-  kalo edgesnya dipanahin
-
+- now the graph resets at getDerivedStateFromProps
+- the remove duplicates code doesn't work
 
 [ API ]
 - There are friend duplicates, you have to clean them
@@ -24,3 +22,6 @@ You've solved these, and you'll solve those.
 - tambahin action kalo klik graph
 - kalo ID-nya 3, item already exist
   ID 3 already exist karena keulang di friends
+- tambahin arrow di edgesnya
+  cek repeating nodes aja? 
+  repeating edges gaakan kejadian kalo edgesnya dipanahin

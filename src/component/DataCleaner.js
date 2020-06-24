@@ -57,11 +57,7 @@ function cleanAdditional(newData, existing) {
     }
     var newNodes = newFriends.map(mapNode);
 
-    // merge with existing
-    var nodes = newNodes.concat(existing.nodes);
-    var edges = newEdges.concat(existing.edges);
-
-    return { nodes, edges };
+    return { newNodes, newEdges };
 }
 
 function mapNode(person) {
