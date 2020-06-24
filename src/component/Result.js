@@ -1,5 +1,5 @@
 import React from 'react';
-import Graph from 'react-graph-vis';
+import { Graph } from 'react-d3-graph';
 import { options } from './GraphOptions';
 import { cleanInitial, cleanAdditional } from './DataCleaner';
 
@@ -23,12 +23,12 @@ class Result extends React.Component {
             props.data.id !== state.id && 
             props.data !== 'error'
         ) {
-            var { nodes, edges } = cleanInitial(props.data);
+            var { nodes, links } = cleanInitial(props.data);
             return {
                 id: props.data.id,
                 graph: {
                     nodes: nodes,
-                    edges: edges
+                    links: links
                 }
             };
         }
@@ -41,7 +41,7 @@ class Result extends React.Component {
     handleNodeClick(event) {
         var node = event.nodes[0];
         if (node) {
-            var newNodes, newEdges;
+            var newNodes, newLinks;
             console.log(node);
 
             const axios = require('axios').default;
@@ -59,12 +59,12 @@ class Result extends React.Component {
                     console.log(this.state.graph);
                     var cleaned = cleanAdditional(response.data.payload, this.state.graph);
                     newNodes = cleaned.nodes;
-                    newEdges = cleaned.edges;
+                    newLinks = cleaned.links;
                     console.log(newNodes);
-                    console.log(newEdges);
+                    console.log(newLinks);
                     var newGraph = {
                         nodes: newNodes,
-                        edges: newEdges
+                        links: newLinks
                     };
                     console.log(newGraph);
 
@@ -100,11 +100,11 @@ class Result extends React.Component {
                     </p>
 
                     <Graph
-                        graph = { this.state.graph }
+                        id = 'graph-id'
+                        data = { this.state.graph }
                         options = { options }
-                        events = {{ click: this.handleNodeClick }}
+                        onClickNode = {{ click: this.handleNodeClick }}
                         style = {{ height: '650px' }}
-                        vis = {vis => (this.vis = vis)}
                     />
                 </div>
             );

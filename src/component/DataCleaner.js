@@ -7,20 +7,20 @@ function cleanInitial(data) {
         friends.splice(index, 1);
     }
     
-    // create edges
-    const edges = friends.map(
+    // create links
+    const links = friends.map(
         function(x) { return mapEdge(data, x) }
     );
 
     // adds self to nodes list
     friends.push({
         id: data.id,
-        name: data.name,
+        label: data.name,
         element: data.element
     });
     const nodes = friends.map(mapNode);
 
-    return { nodes, edges };
+    return { nodes, links };
 }
 
 function cleanAdditional(newData, existing) {
@@ -32,8 +32,8 @@ function cleanAdditional(newData, existing) {
         newFriends.splice(index, 1);
     }
 
-    // create edges
-    var newEdges = newFriends.map(
+    // create links
+    var newLinks = newFriends.map(
         function(x) { return mapEdge(newData, x) }
     );
 
@@ -51,7 +51,7 @@ function cleanAdditional(newData, existing) {
     if (index === -1) {
         newFriends.push({
             id: newData.id,
-            name: newData.name,
+            label: newData.name,
             element: newData.element
         });
     }
@@ -59,9 +59,9 @@ function cleanAdditional(newData, existing) {
 
     // merge with existing
     var nodes = newNodes.concat(existing.nodes);
-    var edges = newEdges.concat(existing.edges);
+    var links = newLinks.concat(existing.links);
 
-    return { nodes, edges };
+    return { nodes, links };
 }
 
 function mapNode(person) {
@@ -94,8 +94,8 @@ function mapNode(person) {
 
 function mapEdge(person, friend) {
     return ({
-        from: person.id,
-        to: friend.id
+        source: person.id,
+        target: friend.id
     });
 }
 
