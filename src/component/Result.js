@@ -98,8 +98,9 @@ class Result extends React.Component {
                     <Graph
                         id = 'graph-id'
                         data = { this.state.graph }
-                        config = { config }
+                        options = { options }
                         onClickNode = { this.handleNodeClick }
+                        style = {{ height: '650px' }}
                     />
                 </div>
             );
