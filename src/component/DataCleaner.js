@@ -1,11 +1,5 @@
 function cleanInitial(data) {
-    // removes duplicates
-    var friends = data.friends.filter((v, i, a) => a.indexOf(v) === i);
-    // excludes self from friends list
-    const index = friends.map(function(e) { return e.id }).indexOf(data.id);
-    if (index > -1) {
-        friends.splice(index, 1);
-    }
+    var friends = removeDuplicate(data.friends, data.id);
     
     // create links
     const links = friends.map(
@@ -20,17 +14,14 @@ function cleanInitial(data) {
     });
     const nodes = friends.map(mapNode);
 
+    console.log(nodes);
+    console.log(links);
+
     return { nodes, links };
 }
 
 function cleanAdditional(newData, existing) {
-    // remove duplicates
-    var newFriends = newData.friends.filter((v, i, a) => a.indexOf(v) === i);
-    // remove self from friends list
-    var index = newFriends.map(function(e) { return e.id }).indexOf(newData.id);
-    if (index > -1) {
-        newFriends.splice(index, 1);
-    }
+    var newFriends = removeDuplicate(newData.friends);
 
     // create links
     var newLinks = newFriends.map(
@@ -47,7 +38,7 @@ function cleanAdditional(newData, existing) {
     });
 
     // add self to node list if they're not there
-    index = existingID.indexOf(newData.id);
+    const index = existingID.indexOf(newData.id);
     if (index === -1) {
         newFriends.push({
             id: newData.id,
@@ -61,7 +52,29 @@ function cleanAdditional(newData, existing) {
     var nodes = newNodes.concat(existing.nodes);
     var links = newLinks.concat(existing.links);
 
+    console.log("new");
+    console.log(newNodes);
+    console.log(newLinks);
+
+    console.log("concatted");
+    console.log(nodes);
+    console.log(links);
+
     return { nodes, links };
+}
+
+function removeDuplicate(friends, selfId) {
+    // removes duplicates
+    var result = friends.filter((v, i, a) => 
+        a.findIndex(f => f.id === v.id) === i);
+
+    // excludes self from friends list
+    const index = result.map(function(e) { return e.id }).indexOf(selfId);
+    if (index > -1) {
+        result.splice(index, 1);
+    }
+
+    return result;
 }
 
 function mapNode(person) {

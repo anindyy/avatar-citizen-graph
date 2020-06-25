@@ -9,6 +9,7 @@ class Result extends React.Component {
 
         this.state = {
             id: "0",
+            expanded: [],
             graph: {}
         }
 
@@ -16,8 +17,6 @@ class Result extends React.Component {
     }
 
     static getDerivedStateFromProps(props, state) {
-        // I'm not sure if this is an anti-pattern or not
-        // but I can't think of any other ways
         if (
             props.data &&
             props.data !== 'error' &&
@@ -26,6 +25,7 @@ class Result extends React.Component {
             var { nodes, links } = cleanInitial(props.data);
             return {
                 id: props.data.id,
+                expanded: [props.data.id],
                 graph: {
                     nodes: nodes,
                     links: links
@@ -34,6 +34,7 @@ class Result extends React.Component {
         }
         return {
             id: state.id,
+            expanded: state.expanded,
             graph: state.graph
         };
     }
@@ -41,32 +42,35 @@ class Result extends React.Component {
     handleNodeClick(clickedNodeId) {
         var newNodes, newLinks;
         console.log(clickedNodeId);
+        console.log(this.state.expanded.indexOf(clickedNodeId));
 
-        const axios = require('axios').default;
-        let url = 'http://avatar.labpro.dev/friends/';
-        axios.get(`${url}${clickedNodeId}`)
-            .then(response => {
-                var cleaned = cleanAdditional(response.data.payload, this.state.graph);
-                newNodes = cleaned.nodes;
-                newLinks = cleaned.links;
+        if (this.state.expanded.indexOf(clickedNodeId) === -1) {
+            const axios = require('axios').default;
+            let url = 'http://avatar.labpro.dev/friends/';
+            axios.get(`${url}${clickedNodeId}`)
+                .then(response => {
+                    var cleaned = cleanAdditional(response.data.payload, this.state.graph);
+                    newNodes = cleaned.nodes;
+                    newLinks = cleaned.links;
 
-                this.setState({
-                    id: this.state.id,
-                    graph: {
-                        nodes: newNodes,
-                        links: newLinks
-                    }
+                    var expanded = this.state.expanded;
+                    expanded.push(clickedNodeId);
+
+                    this.setState({
+                        id: this.state.id,
+                        expanded: expanded,
+                        graph: {
+                            nodes: newNodes,
+                            links: newLinks
+                        }
+                    });
                 });
-            });   
+        }
     }
 
     render() {
         if (!this.props.data) {
-            return (
-                <div>
-                    Search something ...                   
-                </div>
-            );
+            return null;
         }
         else if (this.props.data === 'error') {
             return (

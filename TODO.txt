@@ -1,9 +1,7 @@
 - gedein canvasnya masih maksa (belum resizable)
-- tambahin arrow di edgesnya
-  cek repeating nodes aja? repeating edges gaakan kejadian
-  kalo edgesnya dipanahin
-- ngga bisa resubmit angka yang sama
-
+- what do i do when the same node gets clicked twice?
+  it results in repeating edges
+- node yang keulang juga masih kejadiann
 
 [ API ]
 - There are friend duplicates, you have to clean them
@@ -25,3 +23,7 @@ You've solved these, and you'll solve those.
 - terus item already exist ini sering kena gitu knp y
   i think it got to do with the graph
   it cant rewrite itself
+- ngga bisa resubmit angka yang sama
+- tambahin arrow di edgesnya
+  cek repeating nodes aja? repeating edges gaakan kejadian
+  kalo edgesnya dipanahin
