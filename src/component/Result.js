@@ -8,6 +8,7 @@ class Result extends React.Component {
         super(props);
 
         this.state = {
+            id: "0",
             graph: {}
         }
 
@@ -19,10 +20,12 @@ class Result extends React.Component {
         // but I can't think of any other ways
         if (
             props.data &&
-            props.data !== 'error'
+            props.data !== 'error' &&
+            props.data.id !== state.id
         ) {
             var { nodes, links } = cleanInitial(props.data);
             return {
+                id: props.data.id,
                 graph: {
                     nodes: nodes,
                     links: links
@@ -30,45 +33,31 @@ class Result extends React.Component {
             };
         }
         return {
-            graph: {}
+            id: state.id,
+            graph: state.graph
         };
     }
 
-    handleNodeClick(event) {
-        var node = event.nodes[0];
-        if (node) {
-            var newNodes, newLinks;
-            console.log(node);
+    handleNodeClick(clickedNodeId) {
+        var newNodes, newLinks;
+        console.log(clickedNodeId);
 
-            const axios = require('axios').default;
-            let url = 'http://avatar.labpro.dev/friends/';
-            axios.get(`${url}${node}`)
-                .then(response => {
-                    // TODO: make an additional function here
-                    // bedain sama clean initial data
-                    // ini clean added data gitu
-                    // jadi dia bakal consider si initial datanya
-                    // abis itu dia return set baru nodes sama edges
-                    // bistu setState({ graph: newGraph })
-                    // BIS TU JALAN DONG PLIS
-                    console.log(response);
-                    console.log(this.state.graph);
-                    var cleaned = cleanAdditional(response.data.payload, this.state.graph);
-                    newNodes = cleaned.nodes;
-                    newLinks = cleaned.links;
-                    console.log(newNodes);
-                    console.log(newLinks);
-                    var newGraph = {
+        const axios = require('axios').default;
+        let url = 'http://avatar.labpro.dev/friends/';
+        axios.get(`${url}${clickedNodeId}`)
+            .then(response => {
+                var cleaned = cleanAdditional(response.data.payload, this.state.graph);
+                newNodes = cleaned.nodes;
+                newLinks = cleaned.links;
+
+                this.setState({
+                    id: this.state.id,
+                    graph: {
                         nodes: newNodes,
                         links: newLinks
-                    };
-                    console.log(newGraph);
-
-                    this.setState({
-                        graph: newGraph
-                    });
+                    }
                 });
-        }     
+            });   
     }
 
     render() {
@@ -98,7 +87,7 @@ class Result extends React.Component {
                     <Graph
                         id = 'graph-id'
                         data = { this.state.graph }
-                        options = { options }
+                        config = { config }
                         onClickNode = { this.handleNodeClick }
                         style = {{ height: '650px' }}
                     />

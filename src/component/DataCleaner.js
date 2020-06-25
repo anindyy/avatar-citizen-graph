@@ -15,7 +15,7 @@ function cleanInitial(data) {
     // adds self to nodes list
     friends.push({
         id: data.id,
-        label: data.name,
+        name: data.name,
         element: data.element
     });
     const nodes = friends.map(mapNode);
@@ -51,7 +51,7 @@ function cleanAdditional(newData, existing) {
     if (index === -1) {
         newFriends.push({
             id: newData.id,
-            label: newData.name,
+            name: newData.name,
             element: newData.element
         });
     }
