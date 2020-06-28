@@ -2,6 +2,7 @@ import React from 'react';
 import { Graph } from 'react-d3-graph';
 import { config } from './GraphOptions';
 import { cleanInitial, cleanAdditional } from './DataCleaner';
+import "./Result.css";
 
 class Result extends React.Component {
     constructor(props) {
@@ -85,19 +86,26 @@ class Result extends React.Component {
         else if (this.state.error) {
             return (
                 <div className="errMessage">
-                    Something went wrong ...
+                    <b>oops, something went wrong.</b>
                 </div>
             );
         }
         else {
            return (
-                <div className="graph">
-                    <Graph
-                        id = {`G${this.state.id}`}
-                        data = { this.state.graph }
-                        config = { config }
-                        onClickNode = { this.handleNodeClick }
-                    />
+               <div className="result-wrapper">
+                    <div className="text">
+                        <div><strong>ID: </strong>{this.props.data.id}</div>
+                        <div><strong>Name: </strong>{this.props.data.name}</div>
+                        <div><strong>Element: </strong>{this.props.data.element}</div>
+                    </div>
+                    <div className="graph">
+                        <Graph
+                            id = {`G${this.state.id}`}
+                            data = { this.state.graph }
+                            config = { config }
+                            onClickNode = { this.handleNodeClick }
+                        />
+                    </div>
                 </div>
             );
         }

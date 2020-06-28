@@ -1,6 +1,6 @@
 var config = {
-    height: 1024,
-    width: 1024,
+    height: 2000,
+    width: 2000,
     nodeHighlightBehavior: true,
     highlightOpacity: 0.5,
     d3: { // commented values are defaults

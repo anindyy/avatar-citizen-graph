@@ -21,16 +21,9 @@ class App extends React.Component {
     });
   }
 
-
   render() {
     return (
-      // sebetulnya tidak perlu memusingkan css apakah aku benar
       <div className="App">
-        <header className="App-header">
-          <Typography variant = "h3" color = "primary">
-            Avatar Citizen Mapping
-          </Typography>
-        </header>
         <Form onPayloadChange = {this.handlePayloadChange} />
         <Result data = {this.state.payload} />
       </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import "./Form.css";
 
 class Form extends React.Component {
     constructor(props) {
@@ -42,29 +43,33 @@ class Form extends React.Component {
 
     render() {
         return (
-            <div>
-                <TextField
-                    label = "Citizen ID"
-                    type = "number"
-                    InputLabelProps={{
-                        shrink: true
-                    }}
-                    variant = "outlined"
-                    size = "small"
-                    onChange = {this.handleChange}
-                />
-                <Button 
-                    variant = "outlined" 
-                    size = "medium"
-                    color = "primary"
-                    onClick = {this.handleClick}>
-                        Search
-                </Button>
-                <p>
-                    <strong>ID: </strong>{this.props.data.id}{"\n"}
-                    <strong>Name: </strong>{this.props.data.name} {"\n"}
-                    <strong>Element: </strong>{this.props.data.element} {"\n"}
-                </p>
+            <div className="form-wrapper">
+                <div className="form">
+                    <TextField
+                        label = "Citizen ID"
+                        type = "number"
+                        InputLabelProps={{
+                            shrink: true
+                        }}
+                        variant = "outlined"
+                        size = "small"
+                        onChange = {this.handleChange}
+                    />
+                    <Button 
+                        variant = "contained" 
+                        size = "medium"
+                        color = "primary"
+                        disableElevation
+                        onClick = {this.handleClick}>
+                            Map Friends
+                    </Button>
+                </div>
+                <div className="message">
+                    Click the button again to rearrange view.
+                    {/*`ID: ${this.state.payload.id}\n
+                    Name: ${this.state.payload.name}\n
+                    Element: ${this.state.payload.element}\n`*/}
+                </div>
             </div>
         )
     }
