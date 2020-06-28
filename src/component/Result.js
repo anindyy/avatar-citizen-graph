@@ -8,6 +8,7 @@ class Result extends React.Component {
         super(props);
 
         this.state = {
+            error: false,
             id: "0",
             expanded: [],
             graph: {}
@@ -17,13 +18,16 @@ class Result extends React.Component {
     }
 
     static getDerivedStateFromProps(props, state) {
-        if (
-            props.data &&
-            props.data !== 'error' &&
-            props.data.id !== state.id
-        ) {
+        if (!props.data || props.data === 'error') {
+            return {
+                error: true
+            };
+        }
+
+        if (props.data.id !== state.id) {
             var { nodes, links } = cleanInitial(props.data);
             return {
+                error: false,
                 id: props.data.id,
                 expanded: [props.data.id],
                 graph: {
@@ -32,7 +36,9 @@ class Result extends React.Component {
                 }
             };
         }
+        
         return {
+            error: state.error,
             id: state.id,
             expanded: state.expanded,
             graph: state.graph
@@ -41,8 +47,6 @@ class Result extends React.Component {
 
     handleNodeClick(clickedNodeId) {
         var newNodes, newLinks;
-        console.log(clickedNodeId);
-        console.log(this.state.expanded.indexOf(clickedNodeId));
 
         if (this.state.expanded.indexOf(clickedNodeId) === -1) {
             const axios = require('axios').default;
@@ -57,12 +61,18 @@ class Result extends React.Component {
                     expanded.push(clickedNodeId);
 
                     this.setState({
+                        error: false,
                         id: this.state.id,
                         expanded: expanded,
                         graph: {
                             nodes: newNodes,
                             links: newLinks
                         }
+                    });
+                })
+                .catch(err => {
+                    this.setState({
+                        error: true
                     });
                 });
         }
@@ -72,28 +82,21 @@ class Result extends React.Component {
         if (!this.props.data) {
             return null;
         }
-        else if (this.props.data === 'error') {
+        else if (this.state.error) {
             return (
-                <div>
-                    Oops, it doesn't exist.
+                <div className="errMessage">
+                    Something went wrong ...
                 </div>
             );
         }
         else {
            return (
-                <div>
-                    <p>
-                        <strong>ID: </strong>{this.props.data.id}{"\n"}
-                        <strong>Name: </strong>{this.props.data.name} {"\n"}
-                        <strong>Element: </strong>{this.props.data.element} {"\n"}
-                    </p>
-
+                <div className="graph">
                     <Graph
-                        id = 'graph-id'
+                        id = {`G${this.state.id}`}
                         data = { this.state.graph }
                         config = { config }
                         onClickNode = { this.handleNodeClick }
-                        style = {{ height: '650px' }}
                     />
                 </div>
             );

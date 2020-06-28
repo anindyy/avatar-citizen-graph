@@ -44,7 +44,6 @@ class Form extends React.Component {
         return (
             <div>
                 <TextField
-                    // id = ""
                     label = "Citizen ID"
                     type = "number"
                     InputLabelProps={{
@@ -61,6 +60,11 @@ class Form extends React.Component {
                     onClick = {this.handleClick}>
                         Search
                 </Button>
+                <p>
+                    <strong>ID: </strong>{this.props.data.id}{"\n"}
+                    <strong>Name: </strong>{this.props.data.name} {"\n"}
+                    <strong>Element: </strong>{this.props.data.element} {"\n"}
+                </p>
             </div>
         )
     }

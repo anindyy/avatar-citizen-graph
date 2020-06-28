@@ -13,10 +13,7 @@ function cleanInitial(data) {
         element: data.element
     });
     const nodes = friends.map(mapNode);
-
-    console.log(nodes);
-    console.log(links);
-
+    
     return { nodes, links };
 }
 
@@ -51,14 +48,6 @@ function cleanAdditional(newData, existing) {
     // merge with existing
     var nodes = newNodes.concat(existing.nodes);
     var links = newLinks.concat(existing.links);
-
-    console.log("new");
-    console.log(newNodes);
-    console.log(newLinks);
-
-    console.log("concatted");
-    console.log(nodes);
-    console.log(links);
 
     return { nodes, links };
 }
@@ -100,8 +89,7 @@ function mapNode(person) {
     return ({
         color: color,
         id: person.id,
-        name: person.name,
-        title: `ID: ${person.id}, elmt: ${person.element}`
+        name: person.name
     })
 }
 

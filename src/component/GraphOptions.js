@@ -1,17 +1,19 @@
 var config = {
-    directed: true,
-    height: 400,
-    width: 800,
-    d3: {
-        gravity: -100,
-        linkLength: 50,
-        linkStrength: 0
+    height: 1024,
+    width: 1024,
+    nodeHighlightBehavior: true,
+    highlightOpacity: 0.5,
+    d3: { // commented values are defaults
+        alphaTarget: 0.05, // 0.05
+        gravity: -100, // -100
+        linkLength: 100, // 100
+        linkStrength: 1 // 1
     },
     node: {
         labelProperty: 'name'
     },
     link: {
-        highlightColor: "#d7d7d7"
+        highlightColor: "#828282"
     }
 };
 
