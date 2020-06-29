@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d8bbf94d57b0f3a287772215f7f72d3a",
+    "revision": "6bd453ae768a65cc7be03f82b3f01293",
     "url": "/avatar-citizen-graph/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/avatar-citizen-graph/static/css/2.bde44ba4.chunk.css"
   },
   {
-    "revision": "05426551232fe83c6a80",
+    "revision": "8fd44319451f7c56caba",
     "url": "/avatar-citizen-graph/static/css/main.8f0bfeb1.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/avatar-citizen-graph/static/js/2.d1e88557.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "05426551232fe83c6a80",
-    "url": "/avatar-citizen-graph/static/js/main.71775694.chunk.js"
+    "revision": "8fd44319451f7c56caba",
+    "url": "/avatar-citizen-graph/static/js/main.9bfabdf0.chunk.js"
   },
   {
     "revision": "877da3f635dad0d54805",
