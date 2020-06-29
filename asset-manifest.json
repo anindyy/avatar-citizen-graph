@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/avatar-citizen-graph/static/css/main.8f0bfeb1.chunk.css",
+    "main.js": "/avatar-citizen-graph/static/js/main.71775694.chunk.js",
+    "main.js.map": "/avatar-citizen-graph/static/js/main.71775694.chunk.js.map",
+    "runtime-main.js": "/avatar-citizen-graph/static/js/runtime-main.33033b1e.js",
+    "runtime-main.js.map": "/avatar-citizen-graph/static/js/runtime-main.33033b1e.js.map",
+    "static/css/2.bde44ba4.chunk.css": "/avatar-citizen-graph/static/css/2.bde44ba4.chunk.css",
+    "static/js/2.d1e88557.chunk.js": "/avatar-citizen-graph/static/js/2.d1e88557.chunk.js",
+    "static/js/2.d1e88557.chunk.js.map": "/avatar-citizen-graph/static/js/2.d1e88557.chunk.js.map",
+    "index.html": "/avatar-citizen-graph/index.html",
+    "precache-manifest.d7cd215b3c7f2887f66a3ef50d6d5efc.js": "/avatar-citizen-graph/precache-manifest.d7cd215b3c7f2887f66a3ef50d6d5efc.js",
+    "service-worker.js": "/avatar-citizen-graph/service-worker.js",
+    "static/css/2.bde44ba4.chunk.css.map": "/avatar-citizen-graph/static/css/2.bde44ba4.chunk.css.map",
+    "static/css/main.8f0bfeb1.chunk.css.map": "/avatar-citizen-graph/static/css/main.8f0bfeb1.chunk.css.map",
+    "static/js/2.d1e88557.chunk.js.LICENSE.txt": "/avatar-citizen-graph/static/js/2.d1e88557.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/avatar-citizen-graph/static/media/roboto-latin-900-normal.bb1e4dc6.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.33033b1e.js",
+    "static/css/2.bde44ba4.chunk.css",
+    "static/js/2.d1e88557.chunk.js",
+    "static/css/main.8f0bfeb1.chunk.css",
+    "static/js/main.71775694.chunk.js"
+  ]
+}
