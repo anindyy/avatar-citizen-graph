@@ -1,7 +1,6 @@
 import React from 'react';
 import Form from './component/Form';
 import Result from './component/Result';
-import Typography from '@material-ui/core/Typography';
 import './App.css';
 
 class App extends React.Component {

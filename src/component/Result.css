@@ -6,10 +6,10 @@
     justify-content: center;
 
     color: #3f51b5;
-    font-size: 8vh;
+    font-size: 7vh;
 }
 
-.graph {
+.result-graph {
     height: 100vh;
     width: 100%;
     display: flex;
@@ -17,4 +17,30 @@
     justify-content: center;
 
     overflow: hidden;
+}
+
+.result-text {
+    border: 1px solid #3f51b5;
+    padding: 10px;
+    box-shadow: 5px 5px #3f51b5;
+    background-color: white;
+
+    position: fixed;
+    bottom: 4%;
+    left: 2%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.result-text div {
+    text-align: left;
+}
+
+.result-text button {
+    margin-left: auto;
+}
+
+.result-text strong {
+    color: #3f51b5;
 }

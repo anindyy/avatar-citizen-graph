@@ -21,6 +21,7 @@ class Form extends React.Component {
                 payload: data
             });
         }
+        // pass data from form to app
         this.props.onPayloadChange(data);
     }
 
@@ -63,12 +64,6 @@ class Form extends React.Component {
                         onClick = {this.handleClick}>
                             Map Friends
                     </Button>
-                </div>
-                <div className="message">
-                    Click the button again to rearrange view.
-                    {/*`ID: ${this.state.payload.id}\n
-                    Name: ${this.state.payload.name}\n
-                    Element: ${this.state.payload.element}\n`*/}
                 </div>
             </div>
         )

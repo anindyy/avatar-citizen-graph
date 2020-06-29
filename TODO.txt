@@ -1,8 +1,3 @@
-- gedein canvasnya masih maksa (belum resizable)
-- what do i do when the same node gets clicked twice?
-  it results in repeating edges
-- node yang keulang juga masih kejadiann
-
 [ API ]
 - There are friend duplicates, you have to clean them
   before displaying it
@@ -27,3 +22,8 @@ You've solved these, and you'll solve those.
 - tambahin arrow di edgesnya
   cek repeating nodes aja? repeating edges gaakan kejadian
   kalo edgesnya dipanahin
+- gedein canvasnya masih maksa (belum resizable)
+- what do i do when the same node gets clicked twice?
+  it results in repeating edges
+- node yang keulang juga masih kejadiann
+- viewnya masih ngadat ey
