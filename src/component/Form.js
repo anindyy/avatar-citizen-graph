@@ -33,7 +33,7 @@ class Form extends React.Component {
 
     handleClick(e) {
         const axios = require('axios').default;
-        let url = 'http://avatar.labpro.dev/friends/';
+        let url = 'https://avatar.labpro.dev/friends/';
         axios.get(`${url}${this.state.userInput}`)
             .then(response => { 
                 console.log(response);

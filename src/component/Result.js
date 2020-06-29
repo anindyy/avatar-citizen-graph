@@ -54,7 +54,7 @@ class Result extends React.Component {
 
         if (this.state.expanded.indexOf(clickedNodeId) === -1) {
             const axios = require('axios').default;
-            let url = 'http://avatar.labpro.dev/friends/';
+            let url = 'https://avatar.labpro.dev/friends/';
             axios.get(`${url}${clickedNodeId}`)
                 .then(response => {
                     var cleaned = cleanAdditional(response.data.payload, this.state.graph);
