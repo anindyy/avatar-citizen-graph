@@ -22,9 +22,10 @@ class Result extends React.Component {
     }
 
     static getDerivedStateFromProps(props, state) {
-        if (!props.data || props.data === 'error') {
+        if (!props.data || props.data.id === 'e') {
             return {
-                error: true
+                error: true,
+                id: props.data.id
             };
         }
 

@@ -16,14 +16,11 @@ class Form extends React.Component {
     }
 
     saveData(data) {
-        if (data.id !== this.state.payload.id) {
-            this.setState({
-                payload: data
-            });
-
-            // save data from Form to App's state
-            this.props.onPayloadChange(data);
-        }
+        this.setState({
+            payload: data
+        });
+        // save data from Form to App's state
+        this.props.onPayloadChange(data);
     }
 
     handleChange(e) {
@@ -37,7 +34,10 @@ class Form extends React.Component {
         let url = 'https://avatar.labpro.dev/friends/';
         axios.get(`${url}${this.state.userInput}`)
             .then(response => this.saveData(response.data.payload))
-            .catch(response => this.saveData('error'));
+            .catch(response => this.saveData({
+                id: 'e',
+                message: response.message
+            }));
     }
 
     render() {
