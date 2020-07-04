@@ -61,6 +61,7 @@ class Result extends React.Component {
                     newNodes = cleaned.nodes;
                     newLinks = cleaned.links;
 
+                    // save expanded nodes to avoid it being reexpanded
                     var expanded = this.state.expanded;
                     expanded.push(clickedNodeId);
 
@@ -86,6 +87,8 @@ class Result extends React.Component {
                 });
         }
         else {
+            // if node has already expanded before, don't send a new request
+            // just change the information box at the bottom corner
             var indexes = this.state.graph.nodes.map(e => e.id);
             var clickedIndex = indexes.indexOf(clickedNodeId);
             var data = this.state.graph.nodes[clickedIndex];
@@ -134,7 +137,7 @@ class Result extends React.Component {
         else if (this.state.error) {
             return (
                 <div className="errMessage">
-                    <b>um, something went wrong.</b>
+                    <b>no data found.</b>
                 </div>
             );
         }

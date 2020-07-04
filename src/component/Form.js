@@ -20,9 +20,10 @@ class Form extends React.Component {
             this.setState({
                 payload: data
             });
+
+            // save data from Form to App's state
+            this.props.onPayloadChange(data);
         }
-        // pass data from form to app
-        this.props.onPayloadChange(data);
     }
 
     handleChange(e) {
@@ -35,10 +36,7 @@ class Form extends React.Component {
         const axios = require('axios').default;
         let url = 'https://avatar.labpro.dev/friends/';
         axios.get(`${url}${this.state.userInput}`)
-            .then(response => { 
-                console.log(response);
-                this.saveData(response.data.payload);
-            })
+            .then(response => this.saveData(response.data.payload))
             .catch(response => this.saveData('error'));
     }
 
@@ -49,9 +47,7 @@ class Form extends React.Component {
                     <TextField
                         label = "Citizen ID"
                         type = "number"
-                        InputLabelProps={{
-                            shrink: true
-                        }}
+                        InputLabelProps={{ shrink: true }}
                         variant = "outlined"
                         size = "small"
                         onChange = {this.handleChange}
