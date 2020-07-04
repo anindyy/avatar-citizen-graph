@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/avatar-citizen-graph/static/css/main.8f0bfeb1.chunk.css",
-    "main.js": "/avatar-citizen-graph/static/js/main.fc3e8a0a.chunk.js",
-    "main.js.map": "/avatar-citizen-graph/static/js/main.fc3e8a0a.chunk.js.map",
+    "main.js": "/avatar-citizen-graph/static/js/main.e412ff99.chunk.js",
+    "main.js.map": "/avatar-citizen-graph/static/js/main.e412ff99.chunk.js.map",
     "runtime-main.js": "/avatar-citizen-graph/static/js/runtime-main.33033b1e.js",
     "runtime-main.js.map": "/avatar-citizen-graph/static/js/runtime-main.33033b1e.js.map",
     "static/css/2.bde44ba4.chunk.css": "/avatar-citizen-graph/static/css/2.bde44ba4.chunk.css",
     "static/js/2.d1e88557.chunk.js": "/avatar-citizen-graph/static/js/2.d1e88557.chunk.js",
     "static/js/2.d1e88557.chunk.js.map": "/avatar-citizen-graph/static/js/2.d1e88557.chunk.js.map",
     "index.html": "/avatar-citizen-graph/index.html",
-    "precache-manifest.0f9ba1041f3ad80f2614a4f5993ce2b7.js": "/avatar-citizen-graph/precache-manifest.0f9ba1041f3ad80f2614a4f5993ce2b7.js",
+    "precache-manifest.b5383ffd3dd36d9c221e289ed508e8f8.js": "/avatar-citizen-graph/precache-manifest.b5383ffd3dd36d9c221e289ed508e8f8.js",
     "service-worker.js": "/avatar-citizen-graph/service-worker.js",
     "static/css/2.bde44ba4.chunk.css.map": "/avatar-citizen-graph/static/css/2.bde44ba4.chunk.css.map",
     "static/css/main.8f0bfeb1.chunk.css.map": "/avatar-citizen-graph/static/css/main.8f0bfeb1.chunk.css.map",
@@ -21,6 +21,6 @@
     "static/css/2.bde44ba4.chunk.css",
     "static/js/2.d1e88557.chunk.js",
     "static/css/main.8f0bfeb1.chunk.css",
-    "static/js/main.fc3e8a0a.chunk.js"
+    "static/js/main.e412ff99.chunk.js"
   ]
 }
